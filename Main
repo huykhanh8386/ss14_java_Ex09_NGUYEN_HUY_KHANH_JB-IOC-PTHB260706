@@ -1,0 +1,41 @@
+package Ex09;
+public class Main {
+    public static void main(String[] args) {
+        PaymentGateway gateway = new PaymentGateway();
+        double balance = 5000000;
+        System.out.println("       HỆ THỐNG THANH TOÁN THẺ TÍN DỤNG");
+        System.out.println("\n[Kịch bản 1 - Thành công]");
+        try {
+            balance = gateway.processPayment(balance, 2000000);
+            System.out.printf("Số dư còn lại: %,.2f VNĐ%n", balance);
+        } catch (InsufficientFundsException e) {
+            System.out.println("LỖI: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("LỖI: " + e.getMessage());
+        } finally {
+            System.out.println("[LOG] Đã ghi nhận hành động thanh toán.");
+        }
+        System.out.println("\n[Kịch bản 2 - Không đủ số dư]");
+        try {
+            balance = gateway.processPayment(balance, 10000000);
+            System.out.printf("Số dư còn lại: %,.2f VNĐ%n", balance);
+        } catch (InsufficientFundsException e) {
+            System.out.println("LỖI: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("LỖI: " + e.getMessage());
+        } finally {
+            System.out.println("[LOG] Đã ghi nhận hành động thanh toán.");
+        }
+        System.out.println("\n[Kịch bản 3 - Số tiền âm]");
+        try {
+            balance = gateway.processPayment(balance, -500000);
+            System.out.printf("Số dư còn lại: %,.2f VNĐ%n", balance);
+        } catch (InsufficientFundsException e) {
+            System.out.println("LỖI: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("LỖI: " + e.getMessage());
+        } finally {
+            System.out.println("[LOG] Đã ghi nhận hành động thanh toán.");
+        }
+    }
+}
