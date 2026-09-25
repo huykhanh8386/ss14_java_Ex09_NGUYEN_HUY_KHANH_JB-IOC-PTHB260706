@@ -1,0 +1,15 @@
+package Ex09;
+public class PaymentGateway {
+    public double processPayment(double balance, double amount)
+            throws InsufficientFundsException {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Số tiền thanh toán phải lớn hơn 0!");
+        }
+        if (balance < amount) {
+            throw new InsufficientFundsException("Số dư không đủ!");
+        }
+        balance = balance - amount;
+        System.out.printf("Thanh toán thành công: %,.2f VNĐ%n", amount);
+        return balance;
+    }
+}
